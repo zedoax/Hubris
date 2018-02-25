@@ -14,7 +14,7 @@ app.register_blueprint(tournament_blueprint, url_prefix='/tournament')
 
 model_db.init_app(app)
 with app.app_context():
-    model_db.init_app()
+    model_db.create_all()
 
 
 if __name__ == '__main__':
