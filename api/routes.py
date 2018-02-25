@@ -5,13 +5,12 @@ from squeue.queue import SQueue
 
 @api_blueprint.route('/add', methods=['POST'])
 def add_player():
-    r = request
     if 'players' not in session.keys():
         return jsonify(error='No queue object found'), 404
     players = session.get('players')
     queue = SQueue()
     queue.reconstitute(players)
-    player = request.json['player']
+    player = request.form['player']
     queue.enqueue(player)
     session['players'] = queue.players
     return jsonify(message='Added player'), 201
@@ -24,10 +23,14 @@ def move_player():
     players = session.get('players')
     queue = SQueue()
     queue.reconstitute(players)
-    player = queue.dequeue()
-    queue.enqueue(player)
+    if 'index' in request.form and 'player' in request.form:
+        index = int(request.form['index']) - 1
+        player = queue.dequeue(index)
+        queue.enqueue(player)
+    else:
+        return jsonify(error='No/Wrong request arguments found')
     session['players'] = queue.players
-    return jsonify(message='Player moved'), 200
+    return jsonify(message=request.form['player'] + ' moved'), 205
 
 
 @api_blueprint.route('/remove', methods=['POST'])
@@ -35,9 +38,12 @@ def remove_player():
     if 'players' not in session.keys():
         return jsonify(error='No queue object found'), 404
     players = session.get('players')
-    index = request['index']
     queue = SQueue()
     queue.reconstitute(players)
-    queue.remove(index)
+    if 'index' in request.form and 'player' in request.form:
+        index = int(request.form['index']) - 1
+        queue.remove(index)
+    else:
+        return jsonify(error='No/Wrong request arguments found'), 404
     session['players'] = queue.players
-    return jsonify(message='Player removed'), 200
+    return jsonify(message=request.form['player'] + ' removed'), 205

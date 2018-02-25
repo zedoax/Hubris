@@ -5,11 +5,12 @@ class SQueue:
     def enqueue(self, item):
         self.players.append(item)
 
-    def dequeue(self):
+    def dequeue(self, index):
         try:
-            return self.players.pop(0)
-        finally:
-            return _
+            item = self.players.pop(index)
+            return item
+        except IndexError as e:
+            return e
 
     def remove(self, index):
         self.players.pop(index)
