@@ -6,7 +6,10 @@ class SQueue:
         self.players.append(item)
 
     def dequeue(self):
-        self.players.pop()
+        try:
+            return self.players.pop(0)
+        finally:
+            return _
 
     def remove(self, index):
         self.players.pop(index)

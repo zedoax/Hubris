@@ -6,7 +6,7 @@ import json
 
 @squeue_blueprint.route('/', methods=['GET'])
 def get_squeue():
-    if 'queue' not in session.keys():
-        session['queue'] = json.dumps(SQueue().players)
-    players = session.get('queue')
+    if 'players' not in session.keys():
+        session['players'] = SQueue().players
+    players = session.get('players')
     return render_template('squeue.html', title='CSH | Smash Queue', players=players)

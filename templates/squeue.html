@@ -12,4 +12,43 @@
         </div>
     </div>
 {% endfor %}
+
+{% endblock %}
+
+{% block static %}
+<div class="footer">
+    <div class="container">
+        <div class="card">
+            <div class="card-content">
+                <form class="form-inline" id="addPlayer">
+                    <div class="form-group">
+                        <label for="player">Player Name:</label>
+                        <input type="text" name="player" id="player" placeholder="Enter Player Name" class="form-control" required>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Add Player</button>
+                </form>
+                <script>
+                    $('#addPlayer').submit(function (event) {
+                        event.preventDefault();
+
+                        var $form = $('addPlayer');
+                        var data = {};
+                        data['player'] = $form.player;
+
+                        $.ajax({
+                            type: 'POST',
+                            url: './api/v1/add',
+                            data: JSON.stringify(data),
+                            success: success
+                            });
+                    });
+                    function success(data) {
+                        location.reload()
+                    }
+                </script>
+            </div>
+        </div>
+    </div>
+</div>
+
 {% endblock %}

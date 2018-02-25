@@ -6,6 +6,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1"/>
     <meta name="theme-color" content="#B0197E">
     <link rel="stylesheet" href="/static/css/csh-material-bootstrap/dist/css/csh-material-bootstrap.css" media="screen">
+    <link rel="stylesheet" href="/static/css/jquery-ui.min.css">
+    <link rel="stylesheet" href="/static/css/jquery-ui.structure.min.css">
+    <link rel="stylesheet" href="/static/css/jquery-ui.theme.min.css">
     <script src="/static/js/bootstrap.min.js"></script>
     <script src="/static/js/jquery-3.3.1.min.js"></script>
     <script src="/static/js/popper.min.js"></script>
@@ -44,5 +47,7 @@
         {% block content %}
         {% endblock %}
     </div>
+    {% block static %}
+    {% endblock %}
 </body>
 </html>

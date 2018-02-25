@@ -1,21 +1,43 @@
 from api import api_blueprint
-
-
-@api_blueprint.route('/createQueue', methods=['POST'])
-def create_queue():
-    return 'createqueue'
+from flask import session, request, jsonify
+from squeue.queue import SQueue
 
 
 @api_blueprint.route('/add', methods=['POST'])
 def add_player():
-    return 'addplayer'
+    r = request
+    if 'players' not in session.keys():
+        return jsonify(error='No queue object found'), 404
+    players = session.get('players')
+    queue = SQueue()
+    queue.reconstitute(players)
+    player = request.json['player']
+    queue.enqueue(player)
+    session['players'] = queue.players
+    return jsonify(message='Added player'), 201
 
 
 @api_blueprint.route('/move', methods=['POST'])
 def move_player():
-    return 'moveplayer'
+    if 'players' not in session.keys():
+        return jsonify(error='No queue object found'), 404
+    players = session.get('players')
+    queue = SQueue()
+    queue.reconstitute(players)
+    player = queue.dequeue()
+    queue.enqueue(player)
+    session['players'] = queue.players
+    return jsonify(message='Player moved'), 200
 
 
 @api_blueprint.route('/remove', methods=['POST'])
 def remove_player():
-    return 'removeplayer'
+    if 'players' not in session.keys():
+        return jsonify(error='No queue object found'), 404
+    players = session.get('players')
+    index = request['index']
+    queue = SQueue()
+    queue.reconstitute(players)
+    queue.remove(index)
+    session['players'] = queue.players
+    return jsonify(message='Player removed'), 200
