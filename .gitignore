@@ -3,7 +3,7 @@
 
 # Section to use for misc commits when git is being stupid
 # GIT IS STUPID
-#
+# git is stupid
 
 # User-specific stuff:
 .idea/**/workspace.xml
