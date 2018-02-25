@@ -1,0 +1,58 @@
+<!-- remember to panel -->
+<!-- do some required tags thingy -->
+{% extends 'base.html' %}
+
+{% block content %}
+    <div>
+        <h1>Tournament Creation Form</h1>
+    </div>
+    <form action="../api/v1/create" method="post">
+        <div class="form-group">
+            <div class="row">
+                <div class="col-sm-6">
+                    <label for="titleForm"><h5>Title</h5></label>
+                    <input type="text" class="form-control" id="titleForm" placeholder="Annual CSH Smashathon"/>
+                </div>
+            </div>
+        </div>
+        <!-- <div class="form-group">
+            <label for="dateForm">Date of Event</label>
+            <input type="text" class="form-control" id="dateForm" placeholder="4/20/2069"/>
+        </div> -->
+        <div class="form-group">
+            <div class="row">
+                <div class='col-sm-6'>
+                    <label for="datepicker"><h5>Date</h5></label>
+                    <div class='input-group date'>
+                        <input type='text' class="form-control" id="datepicker" placeholder="4/20/2069" />
+                        <span class="input-group-addon">
+                            <span class="glyphicon glyphicon-calendar"></span>
+                        </span>
+                    </div>
+                </div>
+            </div>
+                <script type="text/javascript">
+                    $(function () {
+                        $('#datepicker').datepicker();
+                    });
+                </script>
+        </div>
+    <div class="form-group">
+    <label for="gameselect"><h5>Game Title</h5></label>
+    <select class="form-control" id="gameselect">
+      <option>Super Smash Brothers Melee</option>
+      <option>Super Smash Brothers WiiU</option>
+      <option></option>
+      <option>4</option>
+      <option>5</option>
+    </select>
+  </div>
+    </form>
+
+
+
+{% endblock %}
+
+
+-->
+
