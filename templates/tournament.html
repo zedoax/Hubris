@@ -2,5 +2,21 @@
 
 {% block content %}
     <a href="/create" class="btn btn-primary btn-lg btn-block">CREATE TOURNAMENT</a>
-        <!-- <button type="submit">Create Tournament</button> -->
+    <!--%  for tourney in active_tourneys % -->
+
+    <div style="padding-top: 20px">
+        <div class = "panel">
+            <div class="panel-heading bg-primary" align="center">
+                <h2 style="color: #FFFFFF">Title Holder</h2>
+            </div>
+            <div class="panel-body">
+                <h4>Date: </h4>
+                <h4>Game: </h4>
+                <h4>Tournament Style: </h4>
+                <h4>Competitors: </h4>
+                <h4>Admins: </h4>
+                <h4>Rules:  </h4>
+            </div>
+        </div>
+    </div>
 {% endblock %}

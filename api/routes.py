@@ -41,3 +41,17 @@ def remove_player():
     queue.remove(index)
     session['players'] = queue.players
     return jsonify(message='Player removed'), 200
+
+
+@api_blueprint.route('/create', methods=['POST'])
+def create():
+    """
+    r = request
+    title = r.form['titleForm']
+    date = r.form['datepicker']
+    game = r.form['gameselect'] #deal with inputting own game
+    type = r.form['tourneyselect']
+    competitors = r.form['competitors'] #deal with member-complete; deal with counting competitors
+    admins = r.form['admins'] #deal with member-complete
+    rules = r.form['rules'] #deal with porting; text file maybe?
+    """
