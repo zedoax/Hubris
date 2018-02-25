@@ -14,3 +14,12 @@ button.round {
 textarea.ta {
     resize: vertical;
 }
+
+.tournament-disabled {
+    background-color: #DDDDDD;
+    opacity: .5;
+}
+
+.panel-padding {
+    padding-top: 2em;
+}
