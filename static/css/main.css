@@ -14,3 +14,8 @@ button.round {
 textarea.ta {
     resize: vertical;
 }
+
+.tournament-disabled {
+    background-color: darkgray;
+    opacity: .5;
+}
