@@ -6,3 +6,11 @@ nav.a {
 button.round {
     border-radius: 100%;
 }
+
+.white {
+    color: #FFFFFF !important;
+}
+
+textarea.ta {
+    resize: vertical;
+}

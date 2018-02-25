@@ -47,3 +47,16 @@ def remove_player():
         return jsonify(error='No/Wrong request arguments found'), 404
     session['players'] = queue.players
     return jsonify(message=request.form['player'] + ' removed'), 205
+
+
+@api_blueprint.route('/create', methods=['POST'])
+def create():
+    """
+    title = request.form['titleForm']
+    date = request.form['datepicker']
+    game = request.form['gameselect'] #deal with inputting own game
+    type = request.form['tourneyselect']
+    competitors = request.form['competitors'] #deal with member-complete; deal with counting competitors
+    admins = request.form['admins'] #deal with member-complete
+    rules = request.form['rules'] #deal with porting; text file maybe?
+    """
