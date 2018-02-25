@@ -5,6 +5,7 @@ from config import SECRET_KEY
 
 app = Flask(__name__, static_url_path='/static')
 app.secret_key = SECRET_KEY
+app.config.from_pyfile('config.py')
 app.register_blueprint(api_blueprint, url_prefix='/api/v1')
 app.register_blueprint(squeue_blueprint)
 
