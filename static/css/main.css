@@ -7,6 +7,10 @@ button.round {
     border-radius: 100%;
 }
 
+.panel.round {
+    border-radius: 10px 10px 10px 10px !important;
+}
+
 .white {
     color: #FFFFFF !important;
 }
