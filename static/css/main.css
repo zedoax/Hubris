@@ -16,6 +16,10 @@ textarea.ta {
 }
 
 .tournament-disabled {
-    background-color: darkgray;
+    background-color: #DDDDDD;
     opacity: .5;
+}
+
+.panel-padding {
+    padding-top: 2em;
 }
