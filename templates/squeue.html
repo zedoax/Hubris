@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+
+{% block content %}
+{% for player in players %}
+    <div class="card col-12">
+        <div class="card-content">
+            <div class="card-body">
+                <div class="row">
+                    <h3 class="">{{ player.name }}</h3>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endfor %}
+{% endblock %}
