@@ -9,7 +9,7 @@ app.secret_key = SECRET_KEY
 app.register_blueprint(api_blueprint, url_prefix='/api/v1')
 app.register_blueprint(squeue_blueprint)
 
-app.register_blueprint(tournament_blueprint)
+app.register_blueprint(tournament_blueprint, url_prefix='/tournament')
 
 
 if __name__ == '__main__':

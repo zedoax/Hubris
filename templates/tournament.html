@@ -1,13 +1,13 @@
 {% extends 'base.html' %}
 
 {% block content %}
-    <a href="/create" class="btn btn-primary btn-lg btn-block">CREATE TOURNAMENT</a>
+    <a href="/tournament/create" class="btn btn-primary btn-lg btn-block">CREATE TOURNAMENT</a>
     <!--%  for tourney in active_tourneys % -->
 
     <div style="padding-top: 20px">
         <div class = "panel">
             <div class="panel-heading bg-primary" align="center">
-                <h2 style="color: #FFFFFF">Title Holder</h2>
+                <h2 class="white">Title Holder</h2>
             </div>
             <div class="panel-body">
                 <h4>Date: </h4>
@@ -15,7 +15,14 @@
                 <h4>Tournament Style: </h4>
                 <h4>Competitors: </h4>
                 <h4>Admins: </h4>
-                <h4>Rules:  </h4>
+                <div class="row">
+                    <div class="col-lg-6">
+                        <a href="/" class="btn btn-primary btn-lg btn-group-justified">VIEW TOURNAMENT</a>
+                    </div>
+                    <div class="col-lg-6">
+                        <a href="/" class="btn btn-primary btn-lg btn-group-justified">VIEW RULESET</a>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
