@@ -3,7 +3,8 @@ import logging
 
 
 def init_database(script):
-    if engine.has_table("tournament") and engine.has_table("rules") and engine.has_table("match") and engine.has_table("team"):
+    if engine.has_table("tournament") and engine.has_table("rules") and \
+            engine.has_table("match") and engine.has_table("team"):
         logging.info("Database exists, and is proper")
         return True
     transaction = conn.begin()
@@ -16,9 +17,9 @@ def init_database(script):
         logging.info("Database has been setup")
     except IOError:
         logging.error("Creation script not found")
-        raise
+        return False
     except:
         transaction.rollback()
         logging.error("Generic database error")
-        raise
+        return False
     return True
