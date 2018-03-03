@@ -1,7 +1,6 @@
 from squeue import squeue_blueprint
 from flask import render_template, session
 from squeue.queue import SQueue
-import json
 
 
 @squeue_blueprint.route('/', methods=['GET'])

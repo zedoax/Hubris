@@ -1,13 +1,14 @@
 {% extends 'base.html' %}
 
 {% block content %}
+    <div id="container">
     {% for player in players %}
-        <div class="panel col-12 mb-3 round">
+        <div class="panel col-12 mb-sm-3 mb-md-3 mb-lg-3 round">
             <div class="panel-content">
                 <div class="panel-body">
                     <div class="row">
                         <div class="col-sm-3 text-left">
-                            <form id="removePlayer{{ loop.index }}" action="./api/v1/remove" method="post" role="form">
+                            <form id="removePlayer{{ loop.index }}" onsubmit="onSubmitRemove(this, event)">
                                 <label for="player" class="sr-only"></label>
                                 <input class="hidden" value="{{ player }}" name="player" id="player" required hidden readonly>
                                 <label for="index" class="sr-only"></label>
@@ -18,10 +19,10 @@
                             </form>
                         </div>
                         <div class="col-sm-6">
-                            <h3 class="text-center">{{ player }}</h3>
+                            <h3>{{ player }}</h3>
                         </div>
                         <div class="col-sm-3 text-right">
-                            <form id="movePlayer{{ loop.index }}" action="./api/v1/move" method="post" role="form">
+                            <form id="movePlayer{{ loop.index }}" onsubmit=" onSubmitMove(this, event)">
                                 <label for="player" class="sr-only"></label>
                                 <input value="{{ player }}" name="player" id="player" required hidden readonly>
                                 <label for="index" class="sr-only"></label>
@@ -32,38 +33,13 @@
                             </form>
                         </div>
                         <script>
-                            $('#movePlayer{{ loop.index }}').submit(function (event) {
-                                event.preventDefault();
-
-                                $.ajax({
-                                    method: 'POST',
-                                    url: './api/v1/move',
-                                    data: $(this).serialize(),
-                                    success: onSuccess()
-                                })
-                            });
-
-                            $('#removePlayer{{ loop.index }}').submit(function (event) {
-                                event.preventDefault();
-
-                                $.ajax({
-                                    method: 'POST',
-                                    url: './api/v1/remove',
-                                    data: $(this).serialize(),
-                                    success: onSuccess()
-                                })
-                            });
-
-                            function onSuccess() {
-                                location.reload();
-                            }
                         </script>
                     </div>
                 </div>
             </div>
         </div>
     {% endfor %}
-
+    </div>
 {% endblock %}
 
 {% block static %}
@@ -72,9 +48,9 @@
             <form id="addPlayer" role="form">
                 <div class="form-group row">
                     <div class="col-xs-10">
-                        <label for="player" class="sr-only">Player Name:</label>
-                        <input type="text" name="player" id="player" placeholder="Enter Player Name"
-                               class="form-control form-control-lg" required>
+                        <label for="new-player" class="sr-only">Player Name:</label>
+                        <input type="text" name="new-player" id="new-player" placeholder="Enter Player Name" maxlength="25"
+                               class="form-control form-control-lg" required autofocus>
                     </div>
                     <div class="col-xs-2 text-right">
                         <button type="submit" class="btn btn-primary">Add Player</button>
@@ -83,23 +59,44 @@
             </form>
         </div>
         <script>
+            function onSubmitMove(caller, event) {
+                event.preventDefault();
+                var form = $(caller);
+                $.ajax({
+                    method: 'POST',
+                    url: '/api/v1/move',
+                    data: form.serialize(),
+                    success: success()
+                })
+            }
+
+            function onSubmitRemove(caller, event) {
+                event.preventDefault();
+                var form = $(caller);
+                $.ajax({
+                    method: 'POST',
+                    url: '/api/v1/remove',
+                    data: form.serialize(),
+                    success: success()
+                })
+            }
             $('#addPlayer').submit(function (event) {
                 event.preventDefault();
                 var form = $('#addPlayer');
                 $.ajax({
                     type: 'POST',
-                    url: './api/v1/add',
+                    url: '/api/v1/add',
                     data: form.serialize(),
                     success: success
                 });
             });
-            function success(data) {
-                location.reload()
+            function success() {
+                location.reload(true);
             }
         </script>
     </div>
     <div class="p-3"></div>
-    {% if config['PLUG_ENABLED'] %}
+    {% if config['PLUG_ENABLED'] == 'True' %}
     <div class="container">
         <div class="panel panel-primary round">
             <div class="panel-body">

@@ -10,8 +10,11 @@ def add_player():
     players = session.get('players')
     queue = SQueue()
     queue.reconstitute(players)
-    player = request.form['player']
-    queue.enqueue(player)
+    if 'new-player' in request.form:
+        player = request.form['new-player']
+        queue.enqueue(player)
+    else:
+        return jsonify(error='No/Wrong request arguments found')
     session['players'] = queue.players
     return jsonify(message='Added player'), 201
 
