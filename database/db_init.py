@@ -1,7 +1,7 @@
 from database import engine
 from sqlalchemy import exc
 import logging
-
+import os
 
 def init_database(script):
     if engine.has_table("tournament") and engine.has_table("rules") and \
@@ -15,10 +15,12 @@ def init_database(script):
         return False
     transaction = conn.begin()
     try:
-        init_script = open(script, 'r')
-        for line in init_script.read():
-            transaction.execute(line)
-        init_script.close()
+        __location__ = os.path.realpath(
+            os.path.join(os.getcwd(), os.path.dirname(__file__)))
+        with open(os.path.join(__location__, script), 'r') as init_script_file:
+            line = init_script_file.readline()
+            result = engine.execute(line)
+        init_script_file.close()
         transaction.commit()
         logging.info("Database has been setup")
     except IOError:

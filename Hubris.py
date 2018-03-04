@@ -5,7 +5,6 @@ from squeue import squeue_blueprint
 from tournament import tournament_blueprint
 from database import db as model_db
 from database import db_init
-from database import engine
 
 app = Flask(__name__, static_url_path='/static')
 app.secret_key = config.SECRET_KEY
@@ -18,5 +17,5 @@ model_db.init_app(app)
 
 
 if __name__ == '__main__':
-    db_init.init_database(config.)
+    db_init.init_database(config.DATABASE_CREATION_SCRIPT)
     app.run()
