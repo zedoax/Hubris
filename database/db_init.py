@@ -3,7 +3,7 @@ import logging
 
 
 def database_check_init():
-    if engine.has_table("tournament") and engine.has_table("rules") and \
+    if engine.has_table("tournament") and engine.has_table("rule_set") and \
             engine.has_table("match") and engine.has_table("team"):
         logging.info("Database exists, and is proper")
         return True

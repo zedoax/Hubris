@@ -7,7 +7,7 @@ CREATE TABLE tournament (
   tourney_type VARCHAR(12) NOT NULL,
   rule_set VARCHAR(2000),
   PRIMARY KEY(tournament_id),
-  FOREIGN KEY(rule_set) REFERENCES rule_set
+  FOREIGN KEY(tourney_type) REFERENCES rule_set(tourney_type)
 );
 
 CREATE TABLE rule_set (
@@ -27,9 +27,9 @@ CREATE TABLE match (
   team_b_id VARCHAR(35),
   next_match_id VARCHAR(35),
   PRIMARY KEY(match_id),
-  FOREIGN KEY(tournament_id) REFERENCES tournament,
-  FOREIGN KEY(team_a_id) REFERENCES team,
-  FOREIGN KEY(team_b_id) REFERENCES team
+  FOREIGN KEY(tournament_id) REFERENCES tournament(tournament_id),
+  FOREIGN KEY(team_a_id) REFERENCES team(team_id),
+  FOREIGN KEY(team_b_id) REFERENCES team(team_id)
 );
 
 CREATE TABLE team (
