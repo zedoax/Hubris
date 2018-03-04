@@ -4,7 +4,7 @@ CREATE TABLE tournament (
   title VARCHAR(100) NOT NULL,
   date VARCHAR(20) NOT NULL,
   game_title VARCHAR(100) NOT NULL,
-  tourney_type VARCHAR(12) NOT NULL,
+  tourney_type VARCHAR(20) NOT NULL,
   rule_set VARCHAR(2000),
   PRIMARY KEY(tournament_id),
   FOREIGN KEY(tourney_type) REFERENCES rule_set(tourney_type)
@@ -12,7 +12,7 @@ CREATE TABLE tournament (
 
 CREATE TABLE rule_set (
   -- Default Rule set (Should not change much) --
-  tourney_type VARCHAR(12) NOT NULL,
+  tourney_type VARCHAR(20) NOT NULL,
   rules VARCHAR(3000) NOT NULL,
   PRIMARY KEY(tourney_type)
 );

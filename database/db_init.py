@@ -1,11 +1,13 @@
-from database import engine
+from database import metadata
 import logging
+
+logger = logging.getLogger(__name__)
 
 
 def database_check_init():
-    if engine.has_table("tournament") and engine.has_table("rule_set") and \
-            engine.has_table("match") and engine.has_table("team"):
-        logging.info("Database exists, and is proper")
-        return True
-    logging.error("Database does not exist or is not proper")
-    return False
+    if 'tournament' in metadata.tables and 'rule_set' in metadata.tables and \
+            'match' in metadata.tables and 'team' in metadata.tables:
+        logger.info("Database exists, and is proper")
+    else:
+        logger.error("Database does not exist or is not proper")
+        exit(1)
