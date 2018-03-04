@@ -17,5 +17,5 @@ model_db.init_app(app)
 
 
 if __name__ == '__main__':
-    db_init.init_database(config.DATABASE_CREATION_SCRIPT)
-    app.run()
+    if db_init.database_check_init() is True:
+        app.run()

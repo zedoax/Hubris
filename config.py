@@ -7,7 +7,6 @@ SQLALCHEMY_DATABASE_URI = os.getenv("SQLALCHEMY_DATABASE_URI")
 SQLALCHEMY_TRACK_MODIFICATIONS = os.getenv("SQLALCHEMY_TRACK_MODIFICATIONS", False)
 
 # Database
-DATABASE_CREATION_SCRIPT = os.getenv("DATABASE_CREATION_SCRIPT", "db_init.min.sql")
 
 # Application Secret Key
 SECRET_KEY = secrets.token_hex(64)
