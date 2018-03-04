@@ -9,8 +9,8 @@ class SQueue:
         try:
             item = self.players.pop(index)
             return item
-        except IndexError as e:
-            return e
+        except IndexError:
+            return None
 
     def remove(self, index):
         self.players.pop(index)

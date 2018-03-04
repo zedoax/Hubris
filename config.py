@@ -3,8 +3,10 @@ import secrets
 
 
 # SQL Alchemy
-SQL_DATABASE_URI = os.getenv("SQL_DATABASE_URI", None)
+SQLALCHEMY_DATABASE_URI = os.getenv("SQLALCHEMY_DATABASE_URI")
 SQLALCHEMY_TRACK_MODIFICATIONS = os.getenv("SQLALCHEMY_TRACK_MODIFICATIONS", False)
+
+# Database
 
 # Application Secret Key
 SECRET_KEY = secrets.token_hex(64)
@@ -13,4 +15,4 @@ SECRET_KEY = secrets.token_hex(64)
 # TODO: IPA Credentials and Implementation
 
 # Plug Support
-PLUG_ENABLED = os.getenv("PLUG_ENABLED", "False")
+PLUG_ENABLED = os.getenv("PLUG_ENABLED", 'False')
