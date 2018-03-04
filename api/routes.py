@@ -1,6 +1,7 @@
 from api import api_blueprint
-from flask import session, request, jsonify
+from flask import session, request, jsonify, redirect
 from squeue.queue import SQueue
+from database import db_add
 
 
 @api_blueprint.route('/add', methods=['POST'])
@@ -54,12 +55,21 @@ def remove_player():
 
 @api_blueprint.route('/create', methods=['POST'])
 def create():
-    """
-    title = request.form['titleForm']
-    date = request.form['datepicker']
-    game = request.form['gameselect'] #deal with inputting own game
-    type = request.form['tourneyselect']
-    competitors = request.form['competitors'] #deal with member-complete; deal with counting competitors
-    admins = request.form['admins'] #deal with member-complete
-    rules = request.form['rules'] #deal with porting; text file maybe?
-    """
+    # TODO: Check for SSO Token
+    if 'titleForm' not in request.form and 'datepicker' not in request.form and \
+            'gameselect' not in request.form and 'tourneyselect' not in request.form and \
+            'competitiors' not in request.form and 'admins' not in request.form and 'rules' not in request.form:
+        return jsonify(message="Error, mismatched form"), 400
+    create_request_data = {
+        'title': request.form['titleForm'],
+        'date': request.form['datepicker'],
+        'game': request.form['gameselect'],
+        'type': request.form['tourneyselect'],
+        'competitors': request.form['competitors'],
+        'admins': request.form['admins'],
+        'rules': request.form['rules']
+    }
+    if db_add.create_tournament(create_request_data) is True:
+        return redirect("/tournament", 302, jsonify(message="Success, tournament created"))
+    return jsonify(message="Error, tournament not created"), 500
+

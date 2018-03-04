@@ -1,4 +1,5 @@
-from database import engine, conn
+from database import engine
+from sqlalchemy import exc
 import logging
 
 
@@ -7,6 +8,11 @@ def init_database(script):
             engine.has_table("match") and engine.has_table("team"):
         logging.info("Database exists, and is proper")
         return True
+    try:
+        conn = engine.connect()
+    except exc.DisconnectionError:
+        logging.error("Could not connect to database")
+        return False
     transaction = conn.begin()
     try:
         init_script = open(script, 'r')
