@@ -15,10 +15,6 @@ button.round {
     color: #FFFFFF !important;
 }
 
-textarea.ta {
-    resize: vertical;
-}
-
 .tournament-disabled {
     background-color: #DDDDDD;
     opacity: .5;

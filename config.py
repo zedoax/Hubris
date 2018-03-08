@@ -1,3 +1,5 @@
+"""Hubris Configuration File"""
+
 import os
 import secrets
 

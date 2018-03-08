@@ -1,14 +1,22 @@
+"""
+Files: __init__.py
+    Module that provides a connection layer for PostGreSQL
+    @date_modified - 03/08/2018
+    @author - Elijah Bendinsky
+"""
+import logging
 from flask_sqlalchemy import SQLAlchemy
 from sqlalchemy import create_engine, exc, MetaData
 import config
-import logging
+
+LOGGER = logging.getLogger(__name__)
 
 try:
-    db = SQLAlchemy()
-    engine = create_engine(config.SQLALCHEMY_DATABASE_URI)
-    metadata = MetaData()
-    metadata.reflect(engine)
+    DB = SQLAlchemy()
+    ENGINE = create_engine(config.SQLALCHEMY_DATABASE_URI)
+    METADATA = MetaData()
+    METADATA.reflect(ENGINE)
 except exc.DBAPIError:
-    logging.error("Unable to connect to database")
+    LOGGER.error("Unable to connect to database")
 except exc.SQLAlchemyError:
-    logging.error("SQLAlchemy gone wild")
+    LOGGER.error("SQLAlchemy gone wild")
