@@ -36,7 +36,7 @@ def move_player():
     else:
         return jsonify(error='No/Wrong request arguments found')
     session['players'] = queue.players
-    return jsonify(message=request.form['player'] + ' moved'), 205
+    return redirect("/", 204)
 
 
 @api_blueprint.route('/remove', methods=['POST'])
