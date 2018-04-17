@@ -1,6 +1,9 @@
 import os
 import secrets
 
+# Project
+PROJECT_NAME = "Hubris"
+
 
 # SQL Alchemy
 SQLALCHEMY_DATABASE_URI = os.getenv("SQLALCHEMY_DATABASE_URI")
