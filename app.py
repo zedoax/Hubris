@@ -1,26 +1,10 @@
 import logging
 import config
-from setuptools import setup
 from flask import Flask
 from api import api_blueprint
 from squeue import squeue_blueprint
 from tournament import tournament_blueprint
 from database import db_init
-
-setup(
-    name='hubris',
-    version='0.1',
-    description='Smash Queue and Tournaments',
-    url='http://github.com/zedoax/Hubris',
-    author='Elijah Bendinsky, Jeffrey Taglic',
-    author_email='zedoax@csh.rit.edu',
-    packages=['Hubris'],
-    install_requires=[
-        'flask',
-        'sqlalchemy'
-        'flask_sqlalchemy'
-    ],
-)
 
 logger = logging.getLogger(__name__)
 
