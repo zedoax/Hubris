@@ -4,6 +4,7 @@ import secrets
 # Project
 PROJECT_NAME = "Hubris"
 
+IP = os.getenv("IP", "0.0.0.0")
 PORT = os.getenv("PORT", 8080)
 
 

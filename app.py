@@ -18,4 +18,4 @@ app.register_blueprint(tournament_blueprint, url_prefix='/tournament')
 db_init.database_check_init()
 
 if __name__ == '__main__':
-    app.run(port=config.PORT)
+    app.run(ip=config.IP, port=config.PORT)
