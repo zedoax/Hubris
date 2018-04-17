@@ -10,7 +10,7 @@ setup(
     packages=find_packages(),
     install_requires=[
         'flask',
-        'sqlalchemy'
-        'flask_sqlalchemy'
+        'sqlalchemy',
+        'flask_sqlalchemy',
     ],
 )
